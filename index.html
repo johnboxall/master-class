@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="no-js no-os no-touch no-hd">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/> 
+<meta name="HandheldFriendly" content="True"/> 
+<script type="text/javascript" src="master-class.js"></script>
+<style type="text/css">
+#i { width: 160px; height: 160px; }
+.no-hd #i { background: url(http://lh4.ggpht.com/_xkDinbACmSm1yh_DHzNznHW5TOmLCLTeKvVHvqzEg2X3vYjhEBU6pnBZqUTiuOjFrMuwW_tHqFuJbjcJ58w=s160); }
+.hd #i { 
+ background: url(http://lh4.ggpht.com/_xkDinbACmSm1yh_DHzNznHW5TOmLCLTeKvVHvqzEg2X3vYjhEBU6pnBZqUTiuOjFrMuwW_tHqFuJbjcJ58w=s320); 
+ background-size: 100%; 
+}
+
+
+.info { background: silver; color: grey; }
+.no-hd .info-no-hd,
+.hd .info-hd,
+.landscape .info-landscape,
+.ios .info-ios,
+.android .info-android,
+.blackberry .info-blackberry,
+.no-os .info-no-os,
+.no-js .info-no-js,
+.js .info-js { color: white; background: black; }
+
+
+
+form * { display: block; }
+.landscape form * { display: inline; }
+
+#button { width: 100%; border: 1px solid red; }
+.ios #button { border: 1px solid green; }
+.blackberry #button { border: 1px solid black; }
+.android #button { border: 1px solid purple; }
+
+.js #javascript-enabled { background: yellow; }
+.no-js #javascript-disabled { background: grey; }
+
+</style>
+
+</head>
+<body>
+<h1>Master Class</h1>
+<p>Master Class is a JavaScript library that allows you to target mobile browser functionality in your stylesheet. It's designed to be used on websites that support many types of mobile browsers.</p>
+
+<p>For example, you can use Master Class to show a high resolution images to devices with a high pixel density like the iPhone4:</p>
+<pre><code>/* Show the high resolution image if the device has a high pixel density, like the iPhone4: */
+.hd #image {
+  background: url(high-resolution.png); 
+  background-size: 100%; 
+}
+
+/* Otherwise show a normal resolution image: */
+.no-hd #image { 
+  background: url(normal-resolution.png); 
+}</code></pre>
+
+<p>To do this, Master Classes adds classes to the <code>&lt;html&gt;</code> that allows you to target browsers by:</p>
+<ul>
+	<li>JavaScript Support</li>
+	<li>Touch Support </li>
+	<li>Mobile OS</li>
+	<li>Orientation</li>
+	<li>Pixel Density</li>
+</ul>
+<p>The current Master Class is: <code>&lt;html class="<strong id="current-html-class"></strong>"&gt;</code></p>
+
+<ul>
+	<li><a href="#/examples/">More Examples</a></li>
+	<li><a href="#/usage/">Using Master Class</a></li>
+	<li><a href="#/why/">Why</a></li>
+</ul>
+
+<h2><a href="#/examples/" name="/examples/">Examples</a></h2>
+
+<ul>
+	<li>
+		<p>Show a high definition image to a high pixel density device:</p>
+		<div id="i"></div>
+		<div class="info info-no-hd">Showing the low resolution image.</div>
+		<div class="info info-hd">Showing the high resolution image.</div>
+		<pre><code>#image { width: 160px; height: 160px; }
+.no-hd #image { background: url(/no-hd.png); }
+.hd #image { background: url(/hd.png); background-size: 100%; }</code></pre>
+	</li>
+	<li>
+		<p>Show form elements inline in landscape orientation:</p>
+		<form>
+			<label>Label:</label>
+			<input type="text"/>
+		</form>
+		<div class="info info-landscape">Showing landscape orientation.</div>
+		<pre><code>form * { display: block; }
+.landscape form * { display: inline; }</code></pre>
+	</li>
+	<li>
+		<p>Show different buttons to iOS, Android and BlackBerry devices:</p>
+		<div id="button">Go</div>
+		<div class="info info-no-os">Other.</div>
+		<div class="info info-ios">iOS.</div>
+		<div class="info info-android">Android.</div>
+		<div class="info info-blackberry">BlackBerry.</div>
+		<pre><code>.no-os #button { /*...*/ }
+.ios #button { /*...*/ }
+.android #button { /*...*/ }
+.blackberry #button { /*...*/ }</code></pre>
+	</li>
+
+
+	<li>
+		<p>Inform  users that a site requires JavaScript:</p>
+		<div id="no-js">This site requires JavaScript!</div>
+		<div id="js">JavaScript is enabled.</div>
+		<div class="info info-no-js">NO JS.</div>
+		<div class="info info-js">JS.</div>
+		<pre><code>.no-os #button { /*...*/ }
+.ios #button { /*...*/ }
+.android #button { /*...*/ }
+.blackberry #button { /*...*/ }</code></pre>
+	</li>
+</ul>
+
+<h2><a href="#/usage/" name="/usage/">Using Master Class</a></h2>
+<p>Master Classes works by adding classes to the <html> that allows you to browsers with specific properties.</p>
+<ol>
+	<li>Include the Master Class JavaScript file in page.</li>
+	<li>Add the default master classes to the html element of your page:<br/>
+		<code>&lt;html class="no-js no-os no-touch no-hd"&gt;</code>
+	</li>
+</ol>
+
+<p>The following master classes are availible:</p>
+<ul>
+	<li>JavaScript Support: <code>no-js, js</code></li>
+	<li>Mobile OS: <code>no-os, ios, android, nokia, blackberry</code></li>
+	<li>Orientation: <code>portrait, landscape</code><br/>Orientation classes are only added to devices that support the window.orientation property.</em></li>
+	<li>Pixel Density: <code>no-hd, hd, hd15, h20</code><br/>The <code>hd</code> class is added to all high pixel density devices, while <code>hd15, hd20</code> are added to devices with specific pixel densities.</li>
+</ul>
+
+
+<h2><a href="#/why/" name="/why/">Why</a></h2>
+<p>Media queries are whack, and the world deserves better. In all serious though the obtuse, and difficult and its difficult to prevent multiple images to load using them.</p>
+	
+	
+	
+
+
+
+
+
+
+<script type="text/javascript">
+setInterval(function() {
+	document.getElementById('current-html-class').innerHTML = document.documentElement.className;
+}, 50)
+</script>
+</body>
+</html>
