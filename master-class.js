@@ -1,3 +1,9 @@
+/*!
+ * master-class v0.1
+ * http://johnboxall.github.com/master-class/
+ * Copyright 2010, Mobify
+ * Freely distributed under the MIT license.
+ */
 (function(window, document) {
     var documentElement = document.documentElement,
         classes = [''],
@@ -36,7 +42,6 @@
     if ('ontouchend' in document) {
         classReplaces['no-touch'] = 'touch';
     }
-    
     
     // HD.
     var test = document.createElement('div');
