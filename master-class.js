@@ -1,12 +1,12 @@
 (function(window, document) {
     var documentElement = document.documentElement,
-        klasses = [''],
-        klassReplaces = {'no-js': 'js'};
+        classes = [''],
+        classReplaces = {'no-js': 'js'};
     
     // OS.
     var m = /(ip(od|ad|hone)|android|nokia|blackberry|webos)/gi.exec(navigator.userAgent);
     if (m) {
-        klassReplaces['no-os'] = m[2] ? 'ios' : m[1].toLowerCase();
+        classReplaces['no-os'] = m[2] ? 'ios' : m[1].toLowerCase();
     }
     
     // Orientation.
@@ -14,15 +14,15 @@
         var orientationClasses = ['landscape', 'portrait'],
             orientationRe = new RegExp('(' + orientationClasses.join('|') + ')'),
             orientationEvent = ('onorientationchange' in window) ? 'orientationchange' : 'resize',
-            currentOrientationClass = klasses.push(getOrientationClass());
+            currentOrientationClass = classes.push(getOrientationClass());
         
         addEventListener(orientationEvent, function() {
             var orientationClass = getOrientationClass();
             if (currentOrientationClass != orientationClass) {
                 currentOrientationClass = orientationClass;
-                var klassName = documentElement.className;
-                documentElement.className = klassName ? 
-                    klassName.replace(orientationRe, currentOrientationClass) : 
+                var className = documentElement.className;
+                documentElement.className = className ? 
+                    className.replace(orientationRe, currentOrientationClass) : 
                         currentOrientationClass;
             }
         }, false);
@@ -34,7 +34,7 @@
     
     // Touch.
     if ('ontouchend' in document) {
-        klassReplaces['no-touch'] = 'touch';
+        classReplaces['no-touch'] = 'touch';
     }
     
     
@@ -47,15 +47,15 @@
     var color = test.ownerDocument.defaultView.getComputedStyle(test, null).getPropertyValue('color'),
         m = /255(\))?/gi.exec(color);
     if (m) {
-        klasses.push('hd' + (m[1] ? 20 : 15));
-        klassReplaces['no-hd'] = 'hd';
+        classes.push('hd' + (m[1] ? 20 : 15));
+        classReplaces['no-hd'] = 'hd';
     }
     documentElement.removeChild(test);
 
-    var klassName = documentElement.className;
-    for (replace in klassReplaces) {
-        klassName = klassName.replace(replace, klassReplaces[replace]);
+    var className = documentElement.className;
+    for (replace in classReplaces) {
+        className = className.replace(replace, classReplaces[replace]);
     }
-    documentElement.className = klassName + klasses.join(' ');
+    documentElement.className = className + classes.join(' ');
 
 })(this, document);
